@@ -35,10 +35,18 @@
                                 Stock List:
                              </a>
                              <!--Put Register link-->
-                             <a class="btn btn-sm btn-info" href="{{ route('stock-tables.create') }}">
+                             <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#addProduct" href="{{ route('stock-tables.create') }}">
                                  <span class="glyphicon glyphicon-edit"></span>
-                                 Create Stock
-                             </a>
+                                 Add stock
+                             </button>
+                             <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#addProduct" href="{{ route('stock-tables.create') }}">
+                                 <span class="glyphicon glyphicon-edit"></span>
+                                 Stock Discharge
+                             </button>
+                             <button class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#add-category" href="{{ route('stock-tables.create') }}">
+                                 <span class="glyphicon glyphicon-edit"></span>
+                                 Add new Category
+                             </button>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                               Back </span>
                              </a>
@@ -66,6 +74,12 @@
                                                 <i class="icon ti-search"></i>
                                             </button>
                                         </div>
+                                        <button
+                                                type="submit"
+                                                class="btn btn-primary"
+                                            >
+                                                <i class="icon ti-search"></i>
+                                            </button>
                                     </div>
                                 </form>
                             </div>
@@ -176,7 +190,9 @@
                 </div>
             </div>    
         </div> 
-  
+        
+        @include('partials.modals.addNewOrder')
+        @include('partials.modals.addProduct')
         @include('partials.footer') 
     </section>
   </div>
