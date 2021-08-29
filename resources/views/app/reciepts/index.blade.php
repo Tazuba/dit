@@ -1,4 +1,4 @@
-[[@extends('layouts.appbar')
+@extends('layouts.appbar')
 @extends('layouts.lay.SalespointScript')
 @section('content')
 
@@ -70,12 +70,10 @@
                                         <thead>
                                             <tr>
                                             <div class="row hidden-print">
-                                        <div class="col-md-4">
-                                            
+                                        <div class="col-md-4">                                            
                                             ITEM
                                         </div>
-                                        <div class="col-md-4">
-                                            
+                                        <div class="col-md-4">                                            
                                         UNIT PRICE
                                         </div>
                                         <div class="col-md-4">
@@ -84,7 +82,6 @@
                                         </div >   
                                                 <div class="cart-items">
                                                 </div>
-
                                             </tr>
                                         </thead>
                                         <tbody class="cart-items">
@@ -121,8 +118,7 @@
 
                                                 </tr>
                                             </tfoot>
-                                    </table>
-                                  
+                                    </table>                                  
                                     <div class="row hidden-print">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -139,7 +135,7 @@
                                             <div class="form-group">
                                                 <label class="col-md-12">Discounts(if any):</label>
                                                 <div class="col-md-12">
-                                                    <input text  name="discount" placeholder="enter amount here"
+                                                    <input text  name="discount" placeholder="Enter Ammount here"
                                                         class="form-control form-control-line">
                                                 </div>
                                             </div>
@@ -210,7 +206,7 @@
                                                                                     style="color:black">{{ $resProduct->product_price }}</span>
                                                                                 <span class="shop-item-quantity"
                                                                                     style="color:black;display:none;">{{ $resProduct->product_price }}</span>
-                                                                                <button class="btn btn-sm btn-primary shop-item-button" type="button">ADD TO
+                                                                                <button class="btn btn-sm btn-primary shop-item-button" type="button"> <i  class="ti-plus"></i> ADD TO
                                                                                     BILL</button>
                                                                             </div>
                                                                             @empty
@@ -244,5 +240,3 @@
 
 @include('partials.footer') 
 @endsection
-
-]]

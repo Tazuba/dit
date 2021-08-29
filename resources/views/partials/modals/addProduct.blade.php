@@ -12,7 +12,7 @@
                 <form>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Item Name</label>
-                        <select class="form-control-label col-sm-8" id="exampleFormControlSelect1">
+                        <select class="form-control-label col-sm-8" name = "item_name" id="exampleFormControlSelect1">
                                 <optgroup label="Sodas">
                                     <option class="form-control-label">fant</option>
                                     <option class="form-control-label">Coco</option>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Category</label>
-                        <select class="form-control-label col-sm-6" id="exampleFormControlSelect1">
+                        <select class="form-control-label col-sm-6" name = "item_category" id="exampleFormControlSelect1">
                             <option class="form-control-label">Board Meeting</option>
                             <option class="form-control-label">Workshop</option>
                             <option class="form-control-label">Daily Service</option>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Measure Units</label>
-                        <select class="form-control-label col-sm-8" id="exampleFormControlSelect1">
+                        <select class="form-control-label col-sm-8" name = "item_units" id="exampleFormControlSelect1">
                             <option class="form-control-label">Board Meeting</option>
                             <option class="form-control-label">Workshop</option>
                             <option class="form-control-label">Daily Service</option>
@@ -45,26 +45,26 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Total Quatity received</label>
-                        <input type="number" class="form-control-label col-sm-8" placeholder="Number of items recieved with demages inclusive">
+                        <input type="number"  name = "total_recieved" class="form-control-label col-sm-8" placeholder="Number of items recieved with demages inclusive">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Demages recorded</label>
-                        <input type="number" class="form-control-label col-sm-8" placeholder="Number of demages">
+                        <input type="number"  name = "dameges" class="form-control-label col-sm-8" placeholder="Number of demages">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Actual Stock</label>
-                        <input type="number" readonly class="form-control-label col-sm-8" placeholder="Quantity recorded">
+                        <input type="number" name = "acutual_amount" readonly class="form-control-label col-sm-8" placeholder="Quantity recorded">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Store Sections</label>
-                        <select class="form-control-label col-sm-8" id="exampleFormControlSelect1">
+                        <select class="form-control-label col-sm-8" name = "store_section" id="exampleFormControlSelect1">
                             <option class="form-control-label">Cold Store</option>
                             <option class="form-control-label">Dry Store</option>
                         </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Remarks</label>
-                        <textarea type="text" class="form-control-label col-sm-8" placeholder="Reason for demage"></textarea>
+                        <textarea type="text" name = "remarks" class="form-control-label col-sm-8" placeholder="Reason for demage"></textarea>
                     </div>
 
                     <div class="modal-footer">

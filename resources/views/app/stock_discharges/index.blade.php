@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>{{  request()->route()->uri }}</span></h1>
+                    <h1>Stock Discharges</span></h1>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('stock-discharges.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span>
+                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
                                  Create Discharge
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
@@ -81,13 +81,22 @@
                                             @lang('crud.stock_discharges.inputs.stock_table_id')
                                         </th>
                                         <th class="text-left">
-                                            @lang('crud.stock_discharges.inputs.res_section_id')
-                                        </th>                                      
+                                            @lang('crud.stock_discharges.inputs.unit_id')
+                                        </th>
                                         <th class="text-left">
-                                            @lang('crud.stock_discharges.inputs.description')
+                                            @lang('crud.stock_discharges.inputs.res_section_id')
+                                        </th>   
+                                        <th class="text-left">
+                                            @lang('crud.stock_discharges.inputs.return_date')
+                                        </th>                                    
+                                        <th class="text-left">
+                                            @lang('crud.stock_discharges.inputs.remarks')
                                         </th>
                                         <th class="text-left">
                                             @lang('crud.stock_discharges.inputs.issued_by')
+                                        </th>
+                                        <th class="text-left">
+                                            @lang('crud.stock_discharges.inputs.user_id')
                                         </th>
                                         <th class="text-center">
                                             @lang('crud.common.actions')
@@ -106,12 +115,19 @@
                                             ?? '-' }}
                                         </td>
                                         <td>
+                                            {{ optional($stockDischarge->unit)->unit_name ??
+                                                '-' }}
+                                        </td>                                      
+                                        <td>
                                             {{
                                             optional($stockDischarge->resSection)->section_name
                                             ?? '-' }}
-                                        </td>                                     
-                                        <td>{{ $stockDischarge->description ?? '-' }}</td>
+                                        </td>  
+                                        <td>{{ $stockDischarge->return_date ?? '-' }}</td>                                   
+                                        <td>{{ $stockDischarge->remarks ?? '-' }}</td>
                                         <td>{{ $stockDischarge->issued_by ?? '-' }}</td>
+                                        <td>{{ optional($stockDischarge->user)->name ?? '-'
+                                        }}</td>
                                         <td class="text-center" style="width: 134px;">
                                             <div
                                                 role="group"

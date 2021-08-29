@@ -75,7 +75,7 @@ class RecieptController extends Controller
         "blance" => $blance
         );
         DB::table('discounts3')->insert($data);
-        return redirect('reciepts')->with('status', 'Blog Post Form Data Has Been inserted');
+        return redirect('reciepts')->withSuccess(__('crud.common.created'));
         }
 
     /**

@@ -24,11 +24,10 @@ class StockTableStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'item_name' => ['required', 'max:255', 'string'],
-            'quantity' => ['required', 'numeric'],
-            'unit' => ['required', 'max:255', 'string'],
+            'Name' => ['required', 'max:255', 'string'],
+            'quantity' => ['required', 'max:255'],
             'item_category_id' => ['required', 'exists:item_categories,id'],
-            'buying_price' => ['required', 'max:255'],            
+            'unit_id' => ['required', 'exists:units,id'],
             'remarks' => ['required', 'max:255', 'string'],
         ];
     }

@@ -12,14 +12,18 @@ class RestaurantRequisition extends Model
     use Searchable;
 
     protected $fillable = [
-        'item_name',
-        'quantity',
-        'dateofDelivery',
+        'requisition_code',
         'status',
         'Particulars',
+        'delivery_status',
     ];
 
     protected $searchableFields = ['*'];
 
     protected $table = 'restaurant_requisitions';
+
+    public function requisitionItems()
+    {
+        return $this->hasMany(RequisitionItem::class);
+    }
 }

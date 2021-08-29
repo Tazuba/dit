@@ -36,17 +36,16 @@ return [
 
     'stock_tables' => [
         'name' => 'Stock Tables',
-        'index_title' => 'StockTables List',
+        'index_title' => 'Stock Table List',
         'new_title' => 'New Stock table',
         'create_title' => 'Create StockTable',
         'edit_title' => 'Edit StockTable',
         'show_title' => 'Show StockTable',
         'inputs' => [
             'item_name' => 'Item Name',
-            'quantity' => 'Quantity',
-            'unit' => 'Unit',
-            'item_category_id' => 'Item Category',
-            'buying_price' => 'Buying Price',            
+            'quantity' => 'Quantity In',
+            'unit_id' => '',
+            'item_category_id' => 'Item Category',           
             'remarks' => 'Remarks',
         ],
     ],
@@ -61,7 +60,7 @@ return [
         'inputs' => [
             'product_name' => 'Product Name',
             'price' => 'Price',
-            'res_product_id' => 'Res Product',
+            'res_product_id' => 'Product',
         ],
     ],
 
@@ -79,33 +78,49 @@ return [
         ],
     ],
 
-    'restuarant_sections' => [
-        'name' => 'Restuarant Sections',
-        'index_title' => 'ResSections List',
-        'new_title' => 'New Res section',
-        'create_title' => 'Create ResSection',
-        'edit_title' => 'Edit ResSection',
-        'show_title' => 'Show ResSection',
+    'res_sections' => [
+        'name' => 'Departments',
+        'index_title' => 'Departments List',
+        'new_title' => 'New Department',
+        'create_title' => 'Create Department',
+        'edit_title' => 'Edit Department',
+        'show_title' => 'Show Department',
         'inputs' => [
-            'section_name' => 'Section Name',
+            'section_name' => 'Department Name',
             'description' => 'Description',
         ],
     ],
 
+    'units' => [
+        'name' => 'Measure Units',
+        'index_title' => 'Measure Unit List',
+        'new_title' => 'New Measure Unit',
+        'create_title' => 'Create Measure Unit',
+        'edit_title' => 'Edit Measure Unit',
+        'show_title' => 'Show Measure Unit',
+        'inputs' => [
+            'unit_name' => 'Measure Unit Name',
+            'unit_description' => 'Description',
+        ],
+    ],
+
+
     'stock_discharges' => [
         'name' => 'Stock Discharges',
-        'index_title' => 'StockDischarges List',
+        'index_title' => 'Stock Discharges List',
         'new_title' => 'New Stock discharge',
-        'create_title' => 'Create StockDischarge',
-        'edit_title' => 'Edit StockDischarge',
-        'show_title' => 'Show StockDischarge',
+        'create_title' => 'Create Stock Discharge',
+        'edit_title' => 'Edit Stock Discharge',
+        'show_title' => 'Show Stock Discharge',
         'inputs' => [
             'quantity_issued' => 'Quantity Issued',
             'stock_table_id' => 'Item',
+            'unit_id' => 'Unit',
             'res_section_id' => 'Section',
-            'date' => 'Return Date',
-            'description' => 'Remarks',
+            'return_date' => 'Return Date',
+            'remarks' => 'Remarks',
             'issued_by' => 'Issued By',
+            'user_id' => 'Recieved By',
         ],
     ],
 
@@ -192,13 +207,44 @@ return [
         'edit_title' => 'Edit Restaurant Requisition',
         'show_title' => 'Show Restaurant Requisitions',
         'inputs' => [
-            'item_name' => 'Name',
-            'quantity' => 'Quanity',
-            'dateofDelivery' => 'Delivery Date',
+            'requisition_code' => 'Requisition Code',
             'status' => 'Status',
-            'particulars' => 'Particulars',
+            'delivery_status' => 'Delivery Status',
+            'Particulars' => 'Description',
         ],
     ],
+
+      //Item Requisitions Crud
+      'requisition_items' => [
+        'name' => 'Requisition Items',
+        'index_title' => 'Requisition Items List',
+        'new_title' => 'New Requisition Items',
+        'create_title' => 'Create Requisition Items',
+        'edit_title' => 'Edit Requisition Items',
+        'show_title' => 'Show Requisition Items',
+        'inputs' => [
+            'name' => 'Name',
+            'restaurant_requisition_id' => 'Requisition Identifier',
+        ],
+    ],
+
+    //Requisition Delivery Crud
+    'requisition_item_requisition_deliveries' => [
+        'name' => 'Requisition Items',
+        'index_title' => 'Requisition Items List',
+        'new_title' => 'New Requisition Items',
+        'create_title' => 'Create Requisition Items',
+        'edit_title' => 'Edit Requisition Items',
+        'show_title' => 'Show Requisition Items',
+        'inputs' => [
+            'requisition_item_id' => 'Item',
+            'item_quantity' => 'Quantity',
+            'delivery_date' => 'Delivery Date',
+            'remarks'=> 'Remarks',
+        ],
+    ],
+
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

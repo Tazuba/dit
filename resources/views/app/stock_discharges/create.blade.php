@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Discharge Stock</span></h1>
+                    <h1>Stock Discharge</h1>
                 </div>
             </div>
         </div>
@@ -15,8 +15,8 @@
             <div class="page-header">
                 <div class="page-title">
                     <ol class="breadcrumb">
-                        <a class="breadcrumb-item" href="{{ URL::route('home') }}"> Dashboard</a>
-                    <a class="breadcrumb-item" href="{{ URL::route('stock-tables.create') }}"> Stock Management</a>
+                        <a class="breadcrumb-item" href="{{ URL::route('cafeDashboard') }}"> Dashboard</a>
+                    <a class="breadcrumb-item" href="{{ URL::route('stock-discharges.create') }}"> Stock Discharge</a>
                     </ol>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                              </a>
                              <a class="btn btn-sm btn-info" href="#" >
                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                Create Discharge
+                                Create Stock Discharge
                             </a>
                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                                 Back </span>
@@ -51,20 +51,27 @@
                                 <div class="card-body">
                                     <div  style="margin: auto;"  class="col-lg-12">
                                         <x-form
-                                        method="POST"
-                                        action="{{ route('stock-discharges.store') }}"
-                                        class="mt-4"
-                                    >
-                                        @include('app.stock_discharges.form-inputs')
-                        
-                                        <div class="mt-4">
-                                                               
-                                            <button type="submit" class="btn btn-primary float-right">
-                                                <i class="icon ion-md-save"></i>
-                                                @lang('crud.common.create')
-                                            </button>
-                                        </div>
-                                    </x-form>
+                                            method="POST"
+                                            action="{{ route('stock-discharges.store') }}"
+                                            class="mt-4"
+                                        >
+                                            @include('app.stock_discharges.form-inputs')
+                            
+                                            <div class="mt-4">
+                                                <a
+                                                    href="{{ route('stock-discharges.index') }}"
+                                                    class="btn btn-light"
+                                                >
+                                                    <i class="icon ion-md-return-left text-primary"></i>
+                                                    @lang('crud.common.back')
+                                                </a>
+                            
+                                                <button type="submit" class="btn btn-sm btn-primary float-right">
+                                                    <i class="icon ti-save"></i>
+                                                    @lang('crud.common.create')
+                                                </button>
+                                            </div>
+                                        </x-form>
                                     </div>                              
                                 </div>
                             </div>

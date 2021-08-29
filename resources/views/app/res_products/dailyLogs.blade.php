@@ -32,8 +32,7 @@
                 <div class="col-md-4">
                     <div style="margin-top: 0.5%;" class="row">
                         <button style="margin-left: 20%;" type="submit" class="btn btn-sm btn-primary"><i class="ti-eye"></i> View</button>
-                        <button style="margin-left: 10%;" type="button" onclick="" class="btn btn-sm btn-success">Export to pdf</button>
-                          <button style="margin-left: 10%;" type="button" onclick="window.print()" class="btn btn-sm btn-success">Print</button>
+                        <button style="margin-left: 10%;" type="submit" class="btn btn-sm btn-success">Export to Word</button>
                     </div>                  
                 </div>
               </div>              

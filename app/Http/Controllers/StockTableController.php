@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
 use App\Models\StockTable;
-use App\Models\ItemCategory;
 use Illuminate\Http\Request;
+use App\Models\ItemCategory;
 use App\Http\Requests\StockTableStoreRequest;
 use App\Http\Requests\StockTableUpdateRequest;
+use Illuminate\Support\Facades\DB;
 
 class StockTableController extends Controller
 {
@@ -34,13 +36,85 @@ class StockTableController extends Controller
     public function create(Request $request)
     {
         $this->authorize('create', StockTable::class);
-        $itemCategories = ItemCategory::pluck('name', 'id');
 
-        return view('app.stock_tables.create', 
-                compact('itemCategories')
-            );
+        $itemCategories = ItemCategory::pluck('name', 'id');
+        $units = Unit::pluck('unit_name', 'id');
+
+        return view(
+            'app.stock_tables.create',
+            compact('itemCategories', 'units')
+        );
     }
 
+    public function insert(Request $request){
+        $salesid = "Item/".time();
+        $item_name = $request->input('item_name');
+        $item_category = $request->input('item_category');
+        $dameges = $request->input('dameges');
+        $total_recieved = $request->input('total_recieved');
+        $item_units = $request->input('item_units');
+        $store_section = $request->input('store_section');
+        $receved_by = $request->input('receved_by'); 
+        $date = $request->input('date'); 
+        $remarks = $request->input('remarks'); 
+       // $served_by = $request->input('served_by');
+        $data = array(
+        "Name" => $item_name,
+        "Category" => $item_category,
+        "instock" => $total_recieved - $dameges,
+        "units" => $item_units,
+        "section" => $store_section,
+        "Received_by" => $receved_by,
+        "Date_rec" => $date,
+        );
+        DB::table('available_stock')->insert($data);
+
+        // $served_by = $request->input('served_by');
+        $stockentry = array(
+            "Number" => $total_recieved,
+            "Remarks" => $remarks,
+            "item_code" => $salesid,
+            "Date_rec" => $date,
+            );
+        DB::table('stock_entry')->insert($stockentry);
+        return redirect('stock-tables')->withSuccess(__('crud.common.created'));
+        }
+
+
+        //function discharge
+        public function discharge(Request $request){
+            $salesid = "Item/".time();
+            $item_name = $request->input('item_name');
+            $item_category = $request->input('item_category');
+            $dameges = $request->input('dameges');
+            $total_recieved = $request->input('total_recieved');
+            $item_units = $request->input('item_units');
+            $store_section = $request->input('store_section');
+            $receved_by = $request->input('receved_by'); 
+            $date = $request->input('date'); 
+            $remarks = $request->input('remarks'); 
+           // $served_by = $request->input('served_by');
+            $data = array(
+            "Name" => $item_name,
+            "Category" => $item_category,
+            "instock" => $total_recieved - $dameges,
+            "units" => $item_units,
+            "section" => $store_section,
+            "Received_by" => $receved_by,
+            "Date_rec" => $date,
+            );
+            DB::table('available_stock')->insert($data);
+    
+            // $served_by = $request->input('served_by');
+            $stockentry = array(
+                "Number" => $total_recieved,
+                "Remarks" => $remarks,
+                "item_code" => $salesid,
+                "Date_rec" => $date,
+                );
+            DB::table('stock_entry')->insert($stockentry);
+            return redirect('stock-tables')->withSuccess(__('crud.common.created'));
+            }
     /**
      * @param \App\Http\Requests\StockTableStoreRequest $request
      * @return \Illuminate\Http\Response
@@ -78,9 +152,14 @@ class StockTableController extends Controller
     public function edit(Request $request, StockTable $stockTable)
     {
         $this->authorize('update', $stockTable);
-        $itemCategories = ItemCategory::pluck('name', 'id');
 
-        return view('app.stock_tables.edit', compact('stockTable', 'itemCategories'));
+        $itemCategories = ItemCategory::pluck('name', 'id');
+        $units = Unit::pluck('unit_name', 'id');
+
+        return view(
+            'app.stock_tables.edit',
+            compact('stockTable', 'itemCategories', 'units')
+        );
     }
 
     /**
