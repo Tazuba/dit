@@ -85,34 +85,18 @@ class StockTableController extends Controller
         public function discharge(Request $request){
             $salesid = "Item/".time();
             $item_name = $request->input('item_name');
-            $item_category = $request->input('item_category');
-            $dameges = $request->input('dameges');
-            $total_recieved = $request->input('total_recieved');
-            $item_units = $request->input('item_units');
-            $store_section = $request->input('store_section');
+            $quantity_discharged = $request->input('quantity_discharged');
             $receved_by = $request->input('receved_by'); 
             $date = $request->input('date'); 
-            $remarks = $request->input('remarks'); 
            // $served_by = $request->input('served_by');
             $data = array(
-            "Name" => $item_name,
-            "Category" => $item_category,
-            "instock" => $total_recieved - $dameges,
-            "units" => $item_units,
-            "section" => $store_section,
-            "Received_by" => $receved_by,
-            "Date_rec" => $date,
+            "Item_name" => $item_name,
+            "quantity_discharged" => $quantity_discharged,
+            "discharged_by" => $receved_by,
+            "date_recorded" => $date,
             );
-            DB::table('available_stock')->insert($data);
-    
-            // $served_by = $request->input('served_by');
-            $stockentry = array(
-                "Number" => $total_recieved,
-                "Remarks" => $remarks,
-                "item_code" => $salesid,
-                "Date_rec" => $date,
-                );
-            DB::table('stock_entry')->insert($stockentry);
+            DB::table('stock_discharge3')->insert($data);
+            DB::table('available_stock')->where('Name',$item_name)->decrement('instock', $quantity_discharged);
             return redirect('stock-tables')->withSuccess(__('crud.common.created'));
             }
     /**

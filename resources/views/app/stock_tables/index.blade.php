@@ -43,15 +43,26 @@
                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                 Stock Discharge
                             </button>
-                            <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}"><span><i class="ti-angle-double-left"></i>
+                            <button class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#recieptUpload" href="{{ route('stock-tables.create') }}">
+                                <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
+                                Upload Receipts
+                            </button>
+                            
+                            <a class="btn btn-sm btn-dark float-right ml-2" href="{{ url()->previous() }}"><span><i class="ti-angle-double-left"></i>
                                     Back </span>
                             </a>
+                            <a class="btn btn-sm btn-success float-right ml-2" href="{{ url('exports')}}"><span><i class="ti-angle-double-left"></i>
+                                    Export to Excell </span>
+                            </a>
+                            <button onclick="" class="btn btn-sm btn-danger float-right ml-2" ><span><i class="ti-angle-double-left"></i>
+                                    Generate PDF </span>
+                            </button>
                         </h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6 float-right">
-                                
+
                             </div>
                         </div>
                         <div class="table-responsive">
@@ -64,14 +75,11 @@
                                         <th class="text-left">
                                             Item Name
                                         </th>
-                                         <th class="text-left">
+                                        <th class="text-left">
                                             Category
                                         </th>
                                         <th class="text-left">
                                             Available Stock
-                                        </th>
-                                        <th class="text-left">
-                                            Unit of measurement
                                         </th>
                                         <th class="text-left">
                                             Store Section
@@ -86,41 +94,33 @@
                                     @php
                                     $resProducts = DB::select("select * from available_stock");
                                     @endphp
-                                   @forelse ($resProducts as $stockTable)
+                                    @forelse ($resProducts as $stockTable)
                                     <tr>
                                         <td>{{ $stockTable->item_id ?? '-' }}</td>
                                         <td>{{ $stockTable->Name ?? '-' }}</td>
                                         <td>{{ $stockTable->Category ?? '-' }}</td>
-                                        <td>{{ $stockTable->instock  ?? '-' }}</td>
-                                        <td>{{ $stockTable->units  ?? '-' }}</td>
+                                        <td>{{ $stockTable->instock  ?? '-' }}-{{ $stockTable->units  ?? '-' }}</td>
                                         <td>{{ $stockTable->section  ?? '-' }}</td>
                                         <td class="text-center" style="width: 134px;">
                                             <div role="group" aria-label="Row Actions" class="btn-group">
                                                 @can('update', $stockTable)
-                                                    <button class="btn btn-sm btn-light" data-toggle="modal" data-target="#editStock">
-                                                        <i class="icon ti-pencil-alt"></i>
-                                                    </button>
-                                                @endcan @can('view', $stockTable)
-                                                <a href="">
-                                                    <button type="button" class="btn btn-sm btn-light text-success">
-                                                        <i class="icon ti-eye"></i>
-                                                    </button>
-                                                </a>
-                                                @endcan @can('delete', $stockTable)
-                                                    <button type="button" class="btn btn-sm btn-light text-danger" data-toggle="modal" data-target="#deletStock">
-                                                        <i class="icon ti-trash"></i>
-                                                    </button>
+                                                <button class="btn btn-sm btn-light" data-toggle="modal" data-target="#editStock">
+                                                    <i class="icon ti-pencil-alt"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-sm btn-light text-danger" data-toggle="modal" data-target="#deletStock">
+                                                    <i class="icon ti-trash"></i>
+                                                </button>
                                                 @endcan
                                             </div>
                                         </td>
                                     </tr>
                                     @empty
-                                                                            <tr>
-                                                                                <td colspan="2">
-                                                                                    @lang('crud.common.no_items_found')
-                                                                                </td>
-                                                                            </tr>
-                                                                            @endif
+                                    <tr>
+                                        <td colspan="2">
+                                            @lang('crud.common.no_items_found')
+                                        </td>
+                                    </tr>
+                                    @endif
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -138,9 +138,10 @@
 
 
         @include('partials.modals.stockAction.deletStock')
+         @include('partials.modals.stockAction.recieptUpload')
         @include('partials.modals.stockAction.addStock')
         @include('partials.modals.stockAction.editStock')
-        @include('partials.modals.dischargeStock')
+        @include('partials.modals.stockAction.dischargeStock')
         @include('partials.footer')
     </section>
 </div>

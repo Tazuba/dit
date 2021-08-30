@@ -10,6 +10,10 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ResCategoryController;
 use App\Http\Controllers\ResSalesTableController;
 
+//image upload
+use App\Http\Controllers\ImageUploadController;
+
+
 
 //Business Procurement 
 use App\Http\Controllers\PaymentTypesController;
@@ -27,6 +31,8 @@ use App\Http\Controllers\StockTableController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ResSectionController;
 use App\Http\Controllers\StockDischargeController;
+use App\Http\Controllers\Available_stockController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,13 +66,20 @@ Route::prefix('/')
         Route::resource('users', UserController::class);
         Route::resource('stock-tables', StockTableController::class);
         Route::post('store-stock', [StockTableController::class, 'insert']);
+        Route::post('store-discharge', [StockTableController::class, 'discharge']);
         Route::resource('res-sales-tables', ResSalesTableController::class);
+        Route::get('exports', [Available_stockController::class, 'export']);
 
         //custom routes
         Route::post('/res-products/pointOfsale', [ResProductController::class, 'pointOfsale'])->name('res-products.pointOfsale');
         Route::get('/res-products/dailyLogs', [ResProductController::class, 'dailyLogs'])->name('res-products.dailyLogs');
         Route::resource('res-products', ResProductController::class);
         Route::resource('res-sections', ResSectionController::class);
+
+
+        // ImageUploadController Route
+        Route::get("image-upload",[ImageUploadController::class,'img_upload'])->name("img.upload");
+        Route::post("imgstore",[ImageUploadController::class,'imagestore'])->name("img.store");
 
         Route::get('/stock-discharges/stockLevels', [StockDischargeController::class, 'stockLevels'])->name('stock-discharges.stockLevels');
         Route::resource('stock-discharges', StockDischargeController::class);

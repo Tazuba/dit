@@ -48,15 +48,15 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Quantity In</label>
-                        <input type="number" name="total_recieved" class="form-control-label col-sm-8" placeholder="Enter new stock">
+                        <input type="number" onkeyup = "totalinstock()" name="total_recieved" id = "quantityin" class="form-control-label col-sm-8" placeholder="Enter new stock">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Damages Recorded</label>
-                        <input type="number" name="dameges" class="form-control-label col-sm-8" placeholder="Enter damages">
+                        <input type="number" onkeyup = "totalinstock()" name="dameges" id = "damages" class="form-control-label col-sm-8" placeholder="Enter damages">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Actual Stock</label>
-                        <input type="text" name="acutual_amount" class="form-control-label col-sm-8" placeholder="Exact Stock">
+                        <input type="text" readonly name="acutual_amount" id = "instock" class="form-control-label col-sm-8" placeholder="Exact Stock">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Store Section</label>
@@ -72,11 +72,11 @@
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Date</label>
-                        <input type="date" name="date" class="form-control-label col-sm-8">
+                        <input type="date" id="date" name="date" class="form-control-label col-sm-8">
                     </div>
-                    <div class="form-group row">
+                    <div class="form-group row" hidden>
                         <label class="col-sm-3 col-form-label">Recieved by</label>
-                        <input type="text" name="receved_by" class="form-control-label col-sm-8" value="">
+                        <input type="text" name="receved_by"  value = "{{ Auth::user()->name }}" class="form-control-label col-sm-8" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
@@ -87,3 +87,15 @@
         </div>
     </div>
 </div>
+<script>
+function totalinstock(){
+var totalrecieved = document.getElementById('quantityin').value;
+var damages = document.getElementById('damages').value;
+document.getElementById('instock').value = (totalrecieved - damages);
+
+let date = new Date();
+document.getElementById('date').value = date;
+console.log(date);
+
+}
+</script>
