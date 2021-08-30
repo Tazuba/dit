@@ -66,11 +66,11 @@
                                         Available Items
                                     </a>
                                     <!--Put Register link-->
-                                    <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#addItem" href="">
+                                    <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#addItem" href="">
                                         <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                         Export to PDF
                                     </a>
-                                    <a class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#addCategory" href="">
+                                    <a class="btn btn-sm btn-success ml-4" data-toggle="modal" data-target="#addCategory" href="">
                                         <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                         Export to excel
                                     </a>
@@ -147,11 +147,11 @@
                                             Available Categories
                                         </a>
                                         <!--Put Register link-->
-                                        <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#addItem" href="">
+                                        <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#addItem" href="">
                                             <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                             Export to PDF
                                         </a>
-                                        <a class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#addCategory" href="">
+                                        <a class="btn btn-sm btn-success ml-4" data-toggle="modal" data-target="#addCategory" href="">
                                             <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                             Export to excel
                                         </a>
@@ -229,11 +229,11 @@
                                     Available units
                                 </a>
                                 <!--Put Register link-->
-                                <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#addItem" href="">
+                                <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#addItem" href="">
                                     <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                     Export to PDF
                                 </a>
-                                <a class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#addCategory" href="">
+                                <a class="btn btn-sm btn-success ml-4" data-toggle="modal" data-target="#addCategory" href="">
                                     <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                     Export to excel
                                 </a>
