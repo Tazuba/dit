@@ -66,6 +66,7 @@ Route::prefix('/')
         Route::resource('users', UserController::class);
         Route::resource('stock-tables', StockTableController::class);
         Route::post('store-stock', [StockTableController::class, 'insert']);
+        Route::post('store-item', [ItemCategoryController::class, 'insert']);
         Route::post('store-discharge', [StockTableController::class, 'discharge']);
         Route::resource('res-sales-tables', ResSalesTableController::class);
         Route::get('exports', [Available_stockController::class, 'export']);

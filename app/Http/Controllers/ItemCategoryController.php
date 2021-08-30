@@ -6,6 +6,7 @@ use App\Models\ItemCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemCategoryStoreRequest;
 use App\Http\Requests\ItemCategoryUpdateRequest;
+use Illuminate\Support\Facades\DB;
 
 class ItemCategoryController extends Controller
 {
@@ -27,6 +28,18 @@ class ItemCategoryController extends Controller
             'app.item_categories.index',
             compact('itemCategories', 'search')
         );
+    }
+
+    //inserting new category
+    public function insert(Request $request){
+        $salesid = "Item/".time();
+        $item_name = $request->input('item_name');
+       // $served_by = $request->input('served_by');
+        $data = array(
+        "Item_name" => $item_name,
+        );
+        DB::table('items')->insert($data);
+        return redirect('item-categories')->withSuccess(__('crud.common.created'));
     }
 
     /**

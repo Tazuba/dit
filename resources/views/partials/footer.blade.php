@@ -3,6 +3,21 @@ $(document).ready( function () {
     $('#table_id').DataTable();
 } );
 
+//search for items table
+$(document).ready( function () {
+    $('#items').DataTable();
+} );
+
+//search for categories
+$(document).ready( function () {
+    $('#categories').DataTable();
+} );
+
+//search for units
+$(document).ready( function () {
+    $('#units').DataTable();
+} );
+
 $('#editStock').on('shown.bs.modal', function (event) {
     console.log('hfhfhfhfgdgdggd');
   var button = $(event.relatedTarget) // Button that triggered the modal
