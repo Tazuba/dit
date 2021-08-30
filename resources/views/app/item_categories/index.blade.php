@@ -66,14 +66,14 @@
                                         Available Items
                                     </a>
                                     <!--Put Register link-->
-                                    <a class="btn btn-sm btn-danger" data-toggle="modal" data-target="#addItem" href="">
+                                    <button class="btn btn-sm btn-danger">
                                         <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                         Export to PDF
-                                    </a>
-                                    <a class="btn btn-sm btn-success ml-4" data-toggle="modal" data-target="#addCategory" href="">
+                                    </button>
+                                    <button class="btn btn-sm btn-success ml-4">
                                         <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                         Export to excel
-                                    </a>
+                                    </button>
                                 </h4>
                                 <div class="table-responsive">
                                     <table class="table table-borderless table-hover" id="items">
@@ -83,7 +83,7 @@
                                                     NO
                                                 </th>
                                                 <th class="text-left">
-                                                    @lang('crud.item_categories.inputs.name')
+                                                    Name
                                                 </th>
                                                 <th class="text-center">
                                                     @lang('crud.common.actions')
@@ -91,26 +91,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($itemCategories as $itemCategory)
-                                            <tr>
-                                                <td>#</td>
-                                                <td>{{ $itemCategory->name ?? '-' }}</td>
+                                            @php
+                                            $items = DB::select("select * from items");
+                                            @endphp
+                                            @forelse ($items as $itemCategory) <tr>
+                                                <td>{{ $itemCategory->id  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->Item_name  ?? '-' }}</td>
                                                 <td class="text-center" style="width: 134px;">
                                                     <div role="group" aria-label="Row Actions" class="btn-group">
                                                         @can('update', $itemCategory)
-                                                        <a href="{{ route('item-categories.edit', $itemCategory) }}">
+                                                        <a href="">
                                                             <button type="button" class="btn btn-sm btn-light">
                                                                 <i class="icon ti-pencil-alt"></i>
                                                             </button>
                                                         </a>
                                                         @endcan @can('view', $itemCategory)
-                                                        <a href="{{ route('item-categories.show', $itemCategory) }}">
+                                                        <a href="">
                                                             <button type="button" class="btn btn-sm btn-light text-success">
                                                                 <i class="icon ti-eye"></i>
                                                             </button>
                                                         </a>
                                                         @endcan @can('delete', $itemCategory)
-                                                        <form action="{{ route('item-categories.destroy', $itemCategory) }}" method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                                        <form action="" method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
                                                             @csrf @method('DELETE')
                                                             <button type="submit" class="btn btn-sm btn-light text-danger">
                                                                 <i class="icon ti-trash"></i>
@@ -120,13 +122,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @empty
-                                            <tr>
-                                                <td colspan="4">
-                                                    @lang('crud.common.no_items_found')
-                                                </td>
-                                            </tr>
-                                            @endforelse
+                                    @empty
+                                    <tr>
+                                        <td colspan="2">
+                                            @lang('crud.common.no_items_found')
+                                        </td>
+                                    </tr>
+                                    @endif
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -238,7 +240,7 @@
                                     Export to excel
                                 </a>
                             </h4>
-                            <table class="table table-borderless table-hover" id = "units">
+                            <table class="table table-borderless table-hover" id="units">
                                 <thead>
                                     <tr>
                                         <th class="text-left">
