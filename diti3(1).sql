@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2021 at 02:01 AM
+-- Generation Time: Aug 30, 2021 at 12:21 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -74,13 +74,15 @@ CREATE TABLE `available_stock` (
 --
 
 INSERT INTO `available_stock` (`item_id`, `Name`, `Category`, `instock`, `units`, `section`, `Date_rec`, `Received_by`) VALUES
-(1, 'Fanta', 'Food Stuffs', 78, 'Kilograms', 'Dry Store', '2021-08-24', 'dtyyy'),
-(2, 'Soda', 'Food Stuffs', 60, 'Clusters', 'Dry Store', '2021-08-24', 'hhh'),
-(3, 'Fanta', 'Equipement', 67, 'Clusters', 'Cold Store', '2021-08-26', 'yyy'),
-(4, 'Fanta', 'Equipement', 7, 'Kilograms', 'Dry Store', '2021-08-11', 'ewrdrfg'),
-(5, 'Fanta', 'Equipement', 41, 'Kilograms', 'Dry Store', '2021-08-23', 'wwwwwwwwwee'),
-(6, 'Fanta', 'Equipement', 41, 'Kilograms', 'Dry Store', '2021-08-23', 'wwwwwwwwwee'),
-(7, 'Fanta', 'Equipement', 41, 'Kilograms', 'Dry Store', '2021-08-23', 'wwwwwwwwwee');
+(1, 'Rice', 'Food Stuffs', 66, 'Kilograms', 'Dry Store', '2021-08-24', 'dtyyy'),
+(2, 'Rice', 'Food Stuffs', 48, 'Clusters', 'Dry Store', '2021-08-24', 'hhh'),
+(3, 'Rice', 'Equipement', 55, 'Clusters', 'Cold Store', '2021-08-26', 'yyy'),
+(4, 'Rice', 'Equipement', -5, 'Kilograms', 'Dry Store', '2021-08-11', 'ewrdrfg'),
+(5, 'Rice', 'Equipement', 29, 'Kilograms', 'Dry Store', '2021-08-23', 'wwwwwwwwwee'),
+(6, 'Rice', 'Equipement', 29, 'Kilograms', 'Dry Store', '2021-08-23', 'wwwwwwwwwee'),
+(7, 'Rice', 'Equipement', 29, 'Kilograms', 'Dry Store', '2021-08-23', 'wwwwwwwwwee'),
+(8, 'Rice', 'Equipement', 38, 'Kilograms', 'Dry Store', '2021-08-17', 'Darby Bruen'),
+(9, 'Rice', 'Food Stuffs', 64, 'Kilograms', 'Dry Store', 'Mon Aug 30 2021 04:14:56 GMT+0300 (East Africa Time)', 'Darby Bruen');
 
 -- --------------------------------------------------------
 
@@ -170,6 +172,17 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `Item_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -404,6 +417,26 @@ CREATE TABLE `petty_cashes` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `receipts_stock`
+--
+
+CREATE TABLE `receipts_stock` (
+  `id` int(11) NOT NULL,
+  `receipt_image` text NOT NULL,
+  `uploadedby` text NOT NULL,
+  `Date_rec` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `receipts_stock`
+--
+
+INSERT INTO `receipts_stock` (`id`, `receipt_image`, `uploadedby`, `Date_rec`) VALUES
+(1, '1630302200.png', 'Darby Bruen', '2021-08-17');
 
 -- --------------------------------------------------------
 
@@ -729,6 +762,29 @@ INSERT INTO `sales3` (`sales_id`, `product_name`, `unit_cost`, `Quantity`, `serv
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stock_discharge3`
+--
+
+CREATE TABLE `stock_discharge3` (
+  `id` int(11) NOT NULL,
+  `Item_name` text NOT NULL,
+  `quantity_discharged` int(11) NOT NULL,
+  `discharged_by` text NOT NULL,
+  `date_recorded` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `stock_discharge3`
+--
+
+INSERT INTO `stock_discharge3` (`id`, `Item_name`, `quantity_discharged`, `discharged_by`, `date_recorded`) VALUES
+(1, 'Rice', 67, 'Darby Bruen', '2021-08-03'),
+(2, 'Rice', 6, 'Darby Bruen', '2021-08-17'),
+(3, 'Rice', 6, 'Darby Bruen', '2021-08-10');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stock_discharges`
 --
 
@@ -771,7 +827,8 @@ CREATE TABLE `stock_entry` (
 --
 
 INSERT INTO `stock_entry` (`entry_id`, `Number`, `Remarks`, `item_code`, `Date_rec`) VALUES
-(1, 45, 'fgfjfjhjhf', 'Item/1630268695', '2021-08-23');
+(1, 45, 'fgfjfjhjhf', 'Item/1630268695', '2021-08-23'),
+(2, 56, 'dddd', 'Item/1630283358', '2021-08-17');
 
 -- --------------------------------------------------------
 
@@ -898,6 +955,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `item_categories`
 --
 ALTER TABLE `item_categories`
@@ -955,6 +1018,12 @@ ALTER TABLE `personal_access_tokens`
 ALTER TABLE `petty_cashes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `petty_cashes_expeses_resturant_id_foreign` (`expeses_resturant_id`);
+
+--
+-- Indexes for table `receipts_stock`
+--
+ALTER TABLE `receipts_stock`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `reciepts`
@@ -1017,6 +1086,12 @@ ALTER TABLE `sales`
   ADD KEY `sales_payment_types_id_foreign` (`payment_types_id`);
 
 --
+-- Indexes for table `stock_discharge3`
+--
+ALTER TABLE `stock_discharge3`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `stock_discharges`
 --
 ALTER TABLE `stock_discharges`
@@ -1070,7 +1145,7 @@ ALTER TABLE `asset_types`
 -- AUTO_INCREMENT for table `available_stock`
 --
 ALTER TABLE `available_stock`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -1095,6 +1170,12 @@ ALTER TABLE `expeses_resturants`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `item_categories`
@@ -1131,6 +1212,12 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `petty_cashes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `receipts_stock`
+--
+ALTER TABLE `receipts_stock`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reciepts`
@@ -1181,6 +1268,12 @@ ALTER TABLE `sales`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `stock_discharge3`
+--
+ALTER TABLE `stock_discharge3`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `stock_discharges`
 --
 ALTER TABLE `stock_discharges`
@@ -1190,7 +1283,7 @@ ALTER TABLE `stock_discharges`
 -- AUTO_INCREMENT for table `stock_entry`
 --
 ALTER TABLE `stock_entry`
-  MODIFY `entry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `entry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `stock_tables`
