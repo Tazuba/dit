@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2021 at 12:49 PM
+-- Generation Time: Aug 31, 2021 at 05:45 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -83,6 +83,25 @@ INSERT INTO `available_stock` (`item_id`, `Name`, `Category`, `instock`, `units`
 (7, 'Rice', 'Equipement', 29, 'Kilograms', 'Dry Store', '2021-08-23', 'wwwwwwwwwee'),
 (8, 'Rice', 'Equipement', 38, 'Kilograms', 'Dry Store', '2021-08-17', 'Darby Bruen'),
 (9, 'Rice', 'Food Stuffs', 64, 'Kilograms', 'Dry Store', 'Mon Aug 30 2021 04:14:56 GMT+0300 (East Africa Time)', 'Darby Bruen');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category3`
+--
+
+CREATE TABLE `category3` (
+  `id` int(11) NOT NULL,
+  `category_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category3`
+--
+
+INSERT INTO `category3` (`id`, `category_name`) VALUES
+(1, 'assets'),
+(2, 'Cups');
 
 -- --------------------------------------------------------
 
@@ -189,7 +208,10 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id`, `Item_name`) VALUES
-(1, 'Posho');
+(1, 'Posho'),
+(2, 'Rice'),
+(3, 'Fanta'),
+(4, 'Mirinda');
 
 -- --------------------------------------------------------
 
@@ -443,7 +465,8 @@ CREATE TABLE `receipts_stock` (
 --
 
 INSERT INTO `receipts_stock` (`id`, `receipt_image`, `uploadedby`, `Date_rec`) VALUES
-(1, '1630302200.png', 'Darby Bruen', '2021-08-17');
+(1, '1630302200.png', 'Darby Bruen', '2021-08-17'),
+(2, '1630325537.png', 'Darby Bruen', '2021-08-10');
 
 -- --------------------------------------------------------
 
@@ -887,6 +910,25 @@ CREATE TABLE `tax_rates` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `unit3`
+--
+
+CREATE TABLE `unit3` (
+  `id` int(11) NOT NULL,
+  `unit_name` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `unit3`
+--
+
+INSERT INTO `unit3` (`id`, `unit_name`) VALUES
+(1, 'kgs'),
+(2, 'jerricans');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -935,6 +977,12 @@ ALTER TABLE `asset_types`
 --
 ALTER TABLE `available_stock`
   ADD PRIMARY KEY (`item_id`);
+
+--
+-- Indexes for table `category3`
+--
+ALTER TABLE `category3`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `clients`
@@ -1126,6 +1174,12 @@ ALTER TABLE `tax_rates`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `unit3`
+--
+ALTER TABLE `unit3`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1155,6 +1209,12 @@ ALTER TABLE `available_stock`
   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `category3`
+--
+ALTER TABLE `category3`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
@@ -1182,7 +1242,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `item_categories`
@@ -1224,7 +1284,7 @@ ALTER TABLE `petty_cashes`
 -- AUTO_INCREMENT for table `receipts_stock`
 --
 ALTER TABLE `receipts_stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `reciepts`
@@ -1303,6 +1363,12 @@ ALTER TABLE `stock_tables`
 --
 ALTER TABLE `tax_rates`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `unit3`
+--
+ALTER TABLE `unit3`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
