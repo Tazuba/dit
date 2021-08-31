@@ -146,6 +146,20 @@ class StockTableController extends Controller
         );
     }
 
+    //editing stock item
+    public function editStockItem($id)
+    {
+        $this->authorize('update', 'available_stock');
+
+        if(request()->ajax())
+        {
+            $data =  DB::table('available_stock')->select('item_id','Name','Category','instock','units','section','Date_rec','Received_by')->where('item_id',$id);
+            //->get();DB::table('available_stock')->where('id',$id);
+            //Sample_data::findOrFail($id);
+            return response()->json(['result' => $data]);
+        }
+    }
+
     /**
      * @param \App\Http\Requests\StockTableUpdateRequest $request
      * @param \App\Models\StockTable $stockTable

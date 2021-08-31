@@ -14,49 +14,59 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Item Name</label>
                         <select class="form-control-label col-sm-8" name="item_name" id="exampleFormControlSelect1">
-                            <optgroup label="Soda">
-                            <option selected="true" disabled="disabled">Choose
-                                                            accounttype</option>
-                           
-                                <option class="form-control-label">Fanta</option>
-                                <option class="form-control-label">Soda</option>
-                            </optgroup>
-                            <optgroup label="Foods">
-                            <option selected="true" disabled="disabled">Choose
-                                                            accounttype</option>
-                           
-                                <option class="form-control-label">Rice</option>
-                                <option class="form-control-label">Posho</option>
-                            </optgroup>
+                            <option selected="true" disabled="disabled">Choose from here</option>
+                            @php
+                            $items = DB::select("select * from items");
+                            @endphp
+                            @forelse ($items as $item)
+                            <option class="form-control-label">{{ $item->Item_name  ?? '-' }}</option>
+                            @empty
+                            <option class="form-control-label">@lang('crud.common.no_items_found')</option>
+
+                            @endif
                         </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Item Category</label>
-                        <select class="form-control-label col-sm-8" name="item_category" id="exampleFormControlSelect1">
+                        <select class="form-control-label col-sm-8" name="item_name" id="exampleFormControlSelect1">
                             <option selected="true" disabled="disabled">Choose from here</option>
-                            <option>Food Stuffs</option>
-                            <option>Equipement</option>
+                            @php
+                            $items = DB::select("SELECT * from category3");
+                            @endphp
+                            @forelse ($items as $item)
+                            <option class="form-control-label">{{ $item->category_name  ?? '-' }}</option>
+                            @empty
+                            <option class="form-control-label">@lang('crud.common.no_items_found')</option>
+
+                            @endif
                         </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Measure Units</label>
-                        <select class="form-control-label col-sm-8" name="item_units" id="exampleFormControlSelect1">
+                        <select class="form-control-label col-sm-8" name="item_name" id="exampleFormControlSelect1">
                             <option selected="true" disabled="disabled">Choose from here</option>
-                            <option class="form-control-label">Kilograms</option>
-                            <option class="form-control-label">Clusters</option>
+                            @php
+                            $items = DB::select("SELECT * from unit3");
+                            @endphp
+                            @forelse ($items as $item)
+                            <option class="form-control-label">{{ $item->unit_name  ?? '-' }}</option>
+                            @empty
+                            <option class="form-control-label">@lang('crud.common.no_items_found')</option>
+
+                            @endif
                         </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Quantity In</label>
-                        <input type="number" onkeyup = "totalinstock()" name="total_recieved" id = "quantityin" class="form-control-label col-sm-8" placeholder="Enter new stock">
+                        <input type="number" onkeyup="totalinstock()" name="total_recieved" id="quantityin" class="form-control-label col-sm-8" placeholder="Enter new stock">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Damages Recorded</label>
-                        <input type="number" onkeyup = "totalinstock()" name="dameges" id = "damages" class="form-control-label col-sm-8" placeholder="Enter damages">
+                        <input type="number" onkeyup="totalinstock()" name="dameges" id="damages" class="form-control-label col-sm-8" placeholder="Enter damages">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Actual Stock</label>
-                        <input type="text" readonly name="acutual_amount" id = "instock" class="form-control-label col-sm-8" placeholder="Exact Stock">
+                        <input type="text" readonly name="acutual_amount" id="instock" class="form-control-label col-sm-8" placeholder="Exact Stock">
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Store Section</label>
@@ -76,7 +86,7 @@
                     </div>
                     <div class="form-group row" hidden>
                         <label class="col-sm-3 col-form-label">Recieved by</label>
-                        <input type="text" name="receved_by"  value = "{{ Auth::user()->name }}" class="form-control-label col-sm-8" value="">
+                        <input type="text" name="receved_by" value="{{ Auth::user()->name }}" class="form-control-label col-sm-8" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
@@ -88,14 +98,15 @@
     </div>
 </div>
 <script>
-function totalinstock(){
-var totalrecieved = document.getElementById('quantityin').value;
-var damages = document.getElementById('damages').value;
-document.getElementById('instock').value = (totalrecieved - damages);
+    function totalinstock() {
+        var totalrecieved = document.getElementById('quantityin').value;
+        var damages = document.getElementById('damages').value;
+        document.getElementById('instock').value = (totalrecieved - damages);
 
-let date = new Date();
-document.getElementById('date').value = date;
-console.log(date);
+        let date = new Date();
+        document.getElementById('date').value = date;
+        console.log(date);
 
-}
+    }
+
 </script>

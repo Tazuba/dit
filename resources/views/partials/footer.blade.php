@@ -18,16 +18,21 @@ $(document).ready( function () {
     $('#units').DataTable();
 } );
 
-$('#editStock').on('shown.bs.modal', function (event) {
-    console.log('hfhfhfhfgdgdggd');
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body input').val(recipient)
-})
+$(document).on('click', '#editStockbtnggg', function(){
+  var id = $(this).attr('id');
+  $('#editform').html('');
+  $.ajax({
+   url :"edit-stockItem/"+id"",
+   dataType:"json",
+   success:function(data)
+   {
+    $('#item_name').val("pppp");
+    $('#item_category').val(data.result.last_name);
+    $('#id').val('asdfghjk');
+    $('#editStock').modal('show');
+   }
+  })
+ });
 
 
 </script>

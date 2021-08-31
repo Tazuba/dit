@@ -43,7 +43,7 @@
                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                 Add Item Category
                             </a>
-                            <a class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#addCategory" href="">
+                            <a class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#addUnits" href="">
                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                 Add Item units
                             </a>
@@ -122,13 +122,13 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="2">
-                                            @lang('crud.common.no_items_found')
-                                        </td>
-                                    </tr>
-                                    @endif
+                                            @empty
+                                            <tr>
+                                                <td colspan="2">
+                                                    @lang('crud.common.no_items_found')
+                                                </td>
+                                            </tr>
+                                            @endif
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -165,7 +165,7 @@
                                                     NO.
                                                 </th>
                                                 <th class="text-left">
-                                                    @lang('crud.item_categories.inputs.name')
+                                                    Category Name
                                                 </th>
                                                 <th class="text-center">
                                                     @lang('crud.common.actions')
@@ -173,26 +173,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($itemCategories as $itemCategory)
-                                            <tr>
-                                                <td>#</td>
-                                                <td>{{ $itemCategory->name ?? '-' }}</td>
+                                            @php
+                                            $items = DB::select("SELECT * FROM category3");
+                                            @endphp
+                                            @forelse ($items as $itemCategory) <tr>
+                                                <td>{{ $itemCategory->id  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->category_name  ?? '-' }}</td>
                                                 <td class="text-center" style="width: 134px;">
                                                     <div role="group" aria-label="Row Actions" class="btn-group">
                                                         @can('update', $itemCategory)
-                                                        <a href="{{ route('item-categories.edit', $itemCategory) }}">
+                                                        <a href="">
                                                             <button type="button" class="btn btn-sm btn-light">
                                                                 <i class="icon ti-pencil-alt"></i>
                                                             </button>
                                                         </a>
                                                         @endcan @can('view', $itemCategory)
-                                                        <a href="{{ route('item-categories.show', $itemCategory) }}">
+                                                        <a href="">
                                                             <button type="button" class="btn btn-sm btn-light text-success">
                                                                 <i class="icon ti-eye"></i>
                                                             </button>
                                                         </a>
                                                         @endcan @can('delete', $itemCategory)
-                                                        <form action="{{ route('item-categories.destroy', $itemCategory) }}" method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                                        <form action="" method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
                                                             @csrf @method('DELETE')
                                                             <button type="submit" class="btn btn-sm btn-light text-danger">
                                                                 <i class="icon ti-trash"></i>
@@ -204,11 +206,11 @@
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="4">
+                                                <td colspan="2">
                                                     @lang('crud.common.no_items_found')
                                                 </td>
                                             </tr>
-                                            @endforelse
+                                            @endif
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -247,7 +249,7 @@
                                             NO.
                                         </th>
                                         <th class="text-left">
-                                            @lang('crud.item_categories.inputs.name')
+                                            Unit Name
                                         </th>
                                         <th class="text-center">
                                             @lang('crud.common.actions')
@@ -255,26 +257,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($itemCategories as $itemCategory)
-                                    <tr>
-                                        <td>#</td>
-                                        <td>{{ $itemCategory->name ?? '-' }}</td>
+                                    @php
+                                    $items = DB::select("SELECT * FROM unit3");
+                                    @endphp
+                                    @forelse ($items as $itemCategory) <tr>
+                                        <td>{{ $itemCategory->id  ?? '-' }}</td>
+                                        <td>{{ $itemCategory->unit_name  ?? '-' }}</td>
                                         <td class="text-center" style="width: 134px;">
                                             <div role="group" aria-label="Row Actions" class="btn-group">
                                                 @can('update', $itemCategory)
-                                                <a href="{{ route('item-categories.edit', $itemCategory) }}">
+                                                <a href="">
                                                     <button type="button" class="btn btn-sm btn-light">
                                                         <i class="icon ti-pencil-alt"></i>
                                                     </button>
                                                 </a>
                                                 @endcan @can('view', $itemCategory)
-                                                <a href="{{ route('item-categories.show', $itemCategory) }}">
+                                                <a href="">
                                                     <button type="button" class="btn btn-sm btn-light text-success">
                                                         <i class="icon ti-eye"></i>
                                                     </button>
                                                 </a>
                                                 @endcan @can('delete', $itemCategory)
-                                                <form action="{{ route('item-categories.destroy', $itemCategory) }}" method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
+                                                <form action="" method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
                                                     @csrf @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-light text-danger">
                                                         <i class="icon ti-trash"></i>
@@ -286,19 +290,11 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="2">
                                             @lang('crud.common.no_items_found')
                                         </td>
                                     </tr>
-                                    @endforelse
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="4">
-                                            {!! $itemCategories->render() !!}
-                                        </td>
-                                    </tr>
-                                </tfoot>
+                                    @endif
                             </table>
                         </div>
                     </div>
@@ -312,7 +308,8 @@
 </div>
 
 @include('partials.modals.ItemAction.addItem')
-@include('partials.modals.addCategory')
+@include('partials.modals.CategoryAction.addCategory')
+@include('partials.modals.CategoryAction.addUnits')
 @include('partials.footer')
 </section>
 </div>

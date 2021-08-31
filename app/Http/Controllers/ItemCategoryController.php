@@ -42,6 +42,28 @@ class ItemCategoryController extends Controller
         return redirect('item-categories')->withSuccess(__('crud.common.created'));
     }
 
+    //adding new category
+    public function newCategory(Request $request){
+        $category_name = $request->input('category_name');
+       // $served_by = $request->input('served_by');
+        $data = array(
+        "category_name" => $category_name,
+        );
+        DB::table('category3')->insert($data);
+        return redirect('item-categories')->withSuccess(__('crud.common.created'));
+    }
+
+    //adding new units
+    public function newUnit(Request $request){
+        $unit_name = $request->input('unit_name');
+       // $served_by = $request->input('served_by');
+        $data = array(
+        "unit_name" => $unit_name,
+        );
+        DB::table('unit3')->insert($data);
+        return redirect('item-categories')->withSuccess(__('crud.common.created'));
+    }
+
     /**
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response

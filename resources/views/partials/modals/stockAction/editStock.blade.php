@@ -12,6 +12,7 @@
                 <form method="post" action="{{url('edit-stock')}}" id="editform">
                     {{ csrf_field() }}
                     {{method_field('PUT')}}
+                    <input type = "text"  id = "id">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Item Name</label>
                         <select class="form-control-label col-sm-8" name="item_name" id="item_name exampleFormControlSelect1">

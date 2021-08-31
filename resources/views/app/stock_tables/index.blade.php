@@ -104,7 +104,7 @@
                                         <td class="text-center" style="width: 134px;">
                                             <div role="group" aria-label="Row Actions" class="btn-group">
                                                 @can('update', $stockTable)
-                                                <button class="btn btn-sm btn-light" data-toggle="modal" data-target="#editStock">
+                                                <button class="editStockbtn btn btn-sm btn-light" data-toggle="modal" data-target="#editStock">
                                                     <i class="icon ti-pencil-alt"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-sm btn-light text-danger" data-toggle="modal" data-target="#deletStock">

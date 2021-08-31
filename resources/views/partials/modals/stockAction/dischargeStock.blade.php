@@ -14,9 +14,16 @@
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Stock Item</label>
                         <select class="form-control-label col-sm-8" name="item_name" id="exampleFormControlSelect1">
-                            <option class="form-control-label">Sugar</option>
-                            <option class="form-control-label">Rice</option>
-                            <option class="form-control-label">Fanta</option>
+                            <option selected="true" disabled="disabled">Choose from here</option>
+                            @php
+                            $items = DB::select("select * from items");
+                            @endphp
+                            @forelse ($items as $item)
+                            <option class="form-control-label">{{ $item->Item_name  ?? '-' }}</option>
+                            @empty
+                            <option class="form-control-label">@lang('crud.common.no_items_found')</option>
+
+                            @endif
                         </select>
                     </div>
                     <div class="form-group row">
