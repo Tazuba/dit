@@ -18,21 +18,13 @@ $(document).ready( function () {
     $('#units').DataTable();
 } );
 
-$(document).on('click', '#editStockbtn', function(){
-  var id = $(this).attr('id');
-  $('#editform').html('');
-  $.ajax({
-   url :"edit-stockItem/"+id,
-   dataType:"json",
-   success:function(data)
-   {
-    $('#item_name').val("pppp");
-    $('#item_category').val("hhhh");
-    $('#id').val('asdfghjk');
-    $('#editStock').modal('show');
-   }
-  })
- });
+
+$('#editStock').on('show.bs.modal', function (e) {
+  // do something...
+  alert();
+  console.log('gggg');
+})
+
 
 
 </script>

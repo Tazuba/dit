@@ -96,7 +96,7 @@
                                     @endphp
                                     @forelse ($resProducts as $stockTable)
                                     <tr>
-                                        <td>{{ $stockTable->item_id ?? '-' }}</td>
+                                        <td class = "customerIDCell">{{ $stockTable->item_id ?? '-' }}</td>
                                         <td>{{ $stockTable->Name ?? '-' }}</td>
                                         <td>{{ $stockTable->Category ?? '-' }}</td>
                                         <td>{{ $stockTable->instock  ?? '-' }}-{{ $stockTable->units  ?? '-' }}</td>
@@ -104,7 +104,7 @@
                                         <td class="text-center" style="width: 134px;">
                                             <div role="group" aria-label="Row Actions" class="btn-group">
                                                 @can('update', $stockTable)
-                                                <button class="btn btn-sm btn-light" id = "editStockbtn">
+                                                <button class="btn btn-sm btn-light" id = "editStockbtn" data-toggle="modal" data-target="#editStock">
                                                     <i class="icon ti-pencil-alt"></i>
                                                 </button>
                                                 <button type="button" class="btn btn-sm btn-light text-danger" data-toggle="modal" data-target="#deletStock">
