@@ -18,16 +18,16 @@ $(document).ready( function () {
     $('#units').DataTable();
 } );
 
-$(document).on('click', '#editStockbtnggg', function(){
+$(document).on('click', '#editStockbtn', function(){
   var id = $(this).attr('id');
   $('#editform').html('');
   $.ajax({
-   url :"edit-stockItem/"+id"",
+   url :"edit-stockItem/"+id,
    dataType:"json",
    success:function(data)
    {
     $('#item_name').val("pppp");
-    $('#item_category').val(data.result.last_name);
+    $('#item_category').val("hhhh");
     $('#id').val('asdfghjk');
     $('#editStock').modal('show');
    }
