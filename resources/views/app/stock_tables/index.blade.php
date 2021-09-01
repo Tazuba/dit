@@ -107,7 +107,7 @@
                                                 <button class="btn btn-sm btn-light" id = "editStockbtn" data-toggle="modal" data-target="#editStock">
                                                     <i class="icon ti-pencil-alt"></i>
                                                 </button>
-                                                <button type="button" class="btn btn-sm btn-light text-danger" data-toggle="modal" data-target="#deletStock">
+                                                <button type="button" id = "editStockbtn" class="btn btn-sm btn-light text-danger" data-toggle="modal" data-target="#deletStock">
                                                     <i class="icon ti-trash"></i>
                                                 </button>
                                                 @endcan

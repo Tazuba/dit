@@ -160,6 +160,13 @@ class StockTableController extends Controller
         }
     }
 
+        //editing stock item
+        public function DeleteStockItem(Request $request){
+            $deletid = $request->input('deletid');
+            DB::table('available_stock')->where('item_id',$deletid)->delete();    
+            return redirect('stock-tables')->withSuccess(__('Item has been Deleted'));
+            }
+
     /**
      * @param \App\Http\Requests\StockTableUpdateRequest $request
      * @param \App\Models\StockTable $stockTable

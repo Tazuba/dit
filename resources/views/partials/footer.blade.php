@@ -18,14 +18,19 @@ $(document).ready( function () {
     $('#units').DataTable();
 } );
 
+$(document).on('click', '#editStockbtn', function(){
+$('#table_id .customerIDCell').each(function() {
+  var id = $(this).html();
+  document.getElementById('id').value = id;
+});
+   });
 
-$('#editStock').on('show.bs.modal', function (e) {
-  // do something...
-  alert();
-  console.log('gggg');
-})
-
-
+$(document).on('click', '#editStockbtn', function(){
+$('#table_id .customerIDCell').each(function() {
+  var id = $(this).html();
+  document.getElementById('deleteValue').value = id;
+});
+   });
 
 </script>
 <div class="row">

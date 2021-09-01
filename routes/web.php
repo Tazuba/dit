@@ -71,6 +71,7 @@ Route::prefix('/')
         Route::post('store-unit', [ItemCategoryController::class, 'newUnit']);
         Route::post('store-discharge', [StockTableController::class, 'discharge']);
         Route::post('edit-stockItem', [StockTableController::class, 'editStockItem']);
+        Route::post('delete-stock', [StockTableController::class, 'DeleteStockItem']);
         Route::resource('res-sales-tables', ResSalesTableController::class);
         Route::get('exports', [Available_stockController::class, 'export']);
 
